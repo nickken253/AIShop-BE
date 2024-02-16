@@ -1,0 +1,29 @@
+{
+  "name": "aishop-be",
+  "version": "1.0.0",
+  "description": "BE of AIShop",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nickken253/AIShop-BE.git"
+  },
+  "keywords": [
+    "nodejs",
+    "react"
+  ],
+  "author": "NickKen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nickken253/AIShop-BE/issues"
+  },
+  "homepage": "https://github.com/nickken253/AIShop-BE#readme",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "express": "^4.18.2",
+    "mongoose": "^8.1.2"
+  }
+}
