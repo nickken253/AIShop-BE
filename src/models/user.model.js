@@ -16,12 +16,15 @@ let userSchema = new Schema({
   },
   phone: {
     type: String,
+    default: null,
   },
   address: {
     type: String,
+    default: null,
   },
   avatar: {
     type: String,
+    default: null,
   },
   createdAt: {
     type: Date,
@@ -32,4 +35,11 @@ let userSchema = new Schema({
     default: null,
   },
 });
-module.exports = mongoose.model("User", userSchema);
+
+userSchema.statics = {
+  creatNew(item) {
+    return this.create(item);
+  },
+};
+
+export default  mongoose.model("User", userSchema);

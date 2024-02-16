@@ -5,12 +5,13 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node server.js"
+    "dev": "node src/server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nickken253/AIShop-BE.git"
   },
+  "type": "module",
   "keywords": [
     "nodejs",
     "react"
@@ -23,6 +24,7 @@
   "homepage": "https://github.com/nickken253/AIShop-BE#readme",
   "dependencies": {
     "bluebird": "^3.7.2",
+    "dotenv": "^16.4.4",
     "express": "^4.18.2",
     "mongoose": "^8.1.2"
   }
