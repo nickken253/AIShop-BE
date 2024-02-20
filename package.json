@@ -24,8 +24,11 @@
   "homepage": "https://github.com/nickken253/AIShop-BE#readme",
   "dependencies": {
     "bluebird": "^3.7.2",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.4",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.1.2"
   }
 }
