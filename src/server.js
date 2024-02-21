@@ -1,13 +1,11 @@
 import connectDB from "./config/connectDB.js";
 import bodyParser from "body-parser";
 
-import generateToken from "./middleware/JWTAction.js";
-import { verifyToken } from "./middleware/JWTAction.js";
-
 import productRoutes from './routers/product.routers.js';
 import userRoutes from './routers/user.routers.js';
 // import orderRoutes from './routers/order.routers.js';
-// import cartRoutes from './routers/cart.routers.js';
+import cartRoutes from './routers/cart.routers.js';
+import authRoutes from './routers/auth.routers.js';
 
 import express from "express";
 import dotenv from "dotenv";
@@ -20,8 +18,10 @@ const app = express();
 const host = process.env.SERVER_HOST;
 const port = process.env.SERVER_PORT;
 
+// CHÚ Ý CÁI NÀY KHI ĐẨY TỪ FE QUA BE
 // app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 connectDB()
   .then(() => {
     console.log("Connected to MongoDB successfully!");
@@ -34,6 +34,8 @@ connectDB()
   });
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
-
+// app.use('/api/orders', orderRoutes);
+app.use('/api/cart', cartRoutes);
+app.use('/api/auth', authRoutes);
 
 
