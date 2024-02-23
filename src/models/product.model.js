@@ -21,8 +21,8 @@ let productsStyleSchema = new Schema({
   usage : {type: String, default: null},
   productDisplayName : {type: String, default: null},
   link : {type: String, default: null},
-  // description: {type: String, default: null},
-  // price: {type: Number, default: 0},
+  description: {type: String, default: null},
+  price: {type: Number, default: 0},
   // reviews: {
   //     type: [productReviewSchema],
   //     default: [],

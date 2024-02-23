@@ -79,10 +79,30 @@ export const getProductByPage = async (req, res) => {
     try {
         const page = req.query.page || 1;
         const pageSize = req.query.pageSize || 30;
-        const products = await Product.find().skip((page - 1) * pageSize).limit(pageSize).exec();
+        const products = await Product.find().skip((page - 1) * pageSize).limit(pageSize).select("id image price name").exec();
         res.json(products);
     } catch (error) {
         console.error(error);
         res.status(500).send("Error fetching product style");
     }
 };
+
+export const getListProductImagePriceName = async (req, res) => {
+    try {
+        const products = await Product.find().select("id image price name").exec();
+        res.json(products);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error fetching product style");
+    }
+};
+
+export const getAllProduct = async (req, res) => {
+    try {
+        const products = await Product.find().exec();
+        res.json(products);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error fetching product style");
+    }
+}
