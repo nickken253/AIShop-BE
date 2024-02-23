@@ -65,18 +65,14 @@ export const addCartItem = async (req, res) => {
       return res.status(404).json({ message: "Cart not found" });
     }
     let existingItem = cart.items.find(
-      (item) => item.productId === req.body.productId
+      (item) => item.productId == req.body.productId
     );
     if (existingItem) {
-      // Nếu sản phẩm đã tồn tại, cập nhật thông tin của nó
       existingItem.quantity += req.body.quantity;
       existingItem.totalPrice += req.body.totalPrice;
     } else {
-      // Nếu sản phẩm chưa tồn tại, thêm mới vào giỏ hàng
       cart.items.push(req.body);
     }
-
-    // Cập nhật tổng số lượng và giá trị tổng cộng của giỏ hàng
     cart.totalQuantity = cart.items.reduce(
       (total, item) => total + item.quantity,
       0
@@ -85,8 +81,6 @@ export const addCartItem = async (req, res) => {
       (total, item) => total + item.totalPrice,
       0
     );
-
-    // Lưu thông tin giỏ hàng sau khi đã cập nhật hoặc thêm mới sản phẩm
     await cart.save();
     res.json(cart);
   } catch (error) {
