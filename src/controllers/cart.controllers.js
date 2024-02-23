@@ -93,19 +93,18 @@ export const addCartItem = async (req, res) => {
 
 export const updateCartItem = async (req, res) => {
   const userId = req.params.userId;
-  const productId = req.params.productId;
   try {
     const cart = await Cart.findOne({ userId: userId });
     if (!cart) {
       return res.status(404).json({ message: "Cart not found" });
     }
-    const item = cart.items.find((item) => item.productId == productId);
+    const item = cart.items.find((item) => item.productId == req.body.productId);
     if (!item) {
       return res.status(404).json({ message: "Item not found" });
     }
     cart.totalQuantity = parseInt(cart.totalQuantity) - parseInt(item.quantity);
     cart.totalPrice = parseInt(cart.totalPrice) - parseInt(item.totalPrice);
-    
+
     item.quantity = req.body.quantity;
     item.totalPrice = req.body.totalPrice;
 
