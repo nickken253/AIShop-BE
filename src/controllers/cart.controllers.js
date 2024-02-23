@@ -99,18 +99,19 @@ export const updateCartItem = async (req, res) => {
     if (!cart) {
       return res.status(404).json({ message: "Cart not found" });
     }
-    const item = cart.items.id(productId);
+    const item = cart.items.find((item) => item.productId == productId);
     if (!item) {
       return res.status(404).json({ message: "Item not found" });
     }
+    cart.totalQuantity = parseInt(cart.totalQuantity) - parseInt(item.quantity);
+    cart.totalPrice = parseInt(cart.totalPrice) - parseInt(item.totalPrice);
+    
     item.quantity = req.body.quantity;
     item.totalPrice = req.body.totalPrice;
-    cart.totalQuantity = 0;
-    cart.totalPrice = 0;
-    for (const item of cart.items) {
-      cart.totalQuantity += item.quantity;
-      cart.totalPrice += item.totalPrice;
-    }
+
+    cart.totalQuantity = parseInt(cart.totalQuantity) + parseInt(item.quantity);
+    cart.totalPrice = parseInt(cart.totalPrice) + parseInt(item.totalPrice);
+
     await cart.save();
     res.json(cart);
   } catch (error) {

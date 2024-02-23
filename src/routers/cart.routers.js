@@ -20,7 +20,7 @@ router.post("/create-cart", createNewCart);
 // router.put("/update-cart/:userId", updateCart);
 // router.delete("/delete-cart/:userId", deleteCart);
 router.post("/add-cart-item/:userId", addCartItem);
-router.put("/update-cart-item", updateCartItem); // CHÚ Ý CÁI NÀY, XEM LÀ PUT HAY DELETE
+router.put("/update-cart-item/:userId/:productId", updateCartItem); // CHÚ Ý CÁI NÀY, XEM LÀ PUT HAY DELETE
 router.put("/delete-cart-item", deleteCartItem);
 router.put("/empty-cart/:userId", emptyCart);
 router.get("/get-cart-item/:userId/:productId", getCartItem);
