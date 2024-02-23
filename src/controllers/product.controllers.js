@@ -79,7 +79,7 @@ export const getProductByPage = async (req, res) => {
     try {
         const page = req.query.page || 1;
         const pageSize = req.query.pageSize || 30;
-        const products = await Product.find().skip((page - 1) * pageSize).limit(pageSize).select("id link price name").exec();
+        const products = await Product.find().skip((page - 1) * pageSize).limit(pageSize).select("id link price productDisplayName").exec();
         res.json(products);
     } catch (error) {
         console.error(error);
@@ -89,7 +89,7 @@ export const getProductByPage = async (req, res) => {
 
 export const getListProductImagePriceName = async (req, res) => {
     try {
-        const products = await Product.find().select("id link price name").exec();
+        const products = await Product.find().select("id link price productDisplayName").exec();
         res.json(products);
     } catch (error) {
         console.error(error);
