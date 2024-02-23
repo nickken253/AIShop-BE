@@ -97,6 +97,33 @@ export const getListProductImagePriceName = async (req, res) => {
     }
 };
 
+export const getProductByPagemasterCategory = async (req, res) => {
+    try {
+        const page = req.query.page || 1;
+        const pageSize = req.query.pageSize || 30;
+        const masterCategory = req.params.master;
+        const products = await Product.find({ masterCategory: masterCategory }).skip((page - 1) * pageSize).limit(pageSize).select("id link price productDisplayName ").exec();
+        res.json(products);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error fetching product style");
+    }
+};
+
+export const getProductByPagemasterCategorysubCategory = async (req, res) => {
+    try {
+        const page = req.query.page || 1;
+        const pageSize = req.query.pageSize || 30;
+        const masterCategory = req.params.master;
+        const subCategory = req.params.sub;
+        const products = await Product.find({ masterCategory: masterCategory, subCategory: subCategory }).skip((page - 1) * pageSize).limit(pageSize).select("id link price productDisplayName ").exec();
+        res.json(products);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error fetching product style");
+    }
+};
+
 export const getAllProduct = async (req, res) => {
     try {
         const products = await Product.find().exec();
