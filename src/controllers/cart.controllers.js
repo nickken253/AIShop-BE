@@ -66,7 +66,7 @@ export const addCartItem = async (req, res) => {
             return res.status(404).json({ message: "Cart not found" });
         }
         // Kiểm tra nếu sản phẩm đã tồn tại thì cộng dồn lên
-        const item = cart.items.find((item) => item.productId === req.body.productId);
+        let item = cart.items.find((item) => item.productId === req.body.productId);
         if (item) {
             item.quantity += req.body.quantity;
             item.totalPrice += req.body.totalPrice;
