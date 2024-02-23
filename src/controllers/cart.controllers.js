@@ -79,6 +79,8 @@ export const addCartItem = async (req, res) => {
       cart.totalQuantity += req.body.quantity;
       cart.totalPrice += req.body.totalPrice;
     }
+    await cart.save();
+    res.json(cart);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error adding item to cart" });
