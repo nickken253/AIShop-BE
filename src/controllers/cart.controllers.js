@@ -77,6 +77,7 @@ export const addCartItem = async (req, res) => {
             return;
         }
         // Nếu sản phẩm chưa tồn tại thì thêm mới vào giỏ hàng
+        item = req.body;
         cart.items.push(item);
         cart.totalQuantity += item.quantity;
         cart.totalPrice += item.totalPrice;
