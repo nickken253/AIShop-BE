@@ -74,3 +74,15 @@ export const listSubCategoryByMaster = async (req, res) => {
         res.status(500).send("Error fetching sub category");
     }
 };
+
+export const getProductByPage = async (req, res) => {
+    try {
+        const page = req.query.page || 1;
+        const pageSize = req.query.pageSize || 30;
+        const products = await Product.find().skip((page - 1) * pageSize).limit(pageSize).exec();
+        res.json(products);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error fetching product style");
+    }
+};
