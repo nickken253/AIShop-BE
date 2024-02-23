@@ -64,21 +64,29 @@ export const addCartItem = async (req, res) => {
     if (!cart) {
       return res.status(404).json({ message: "Cart not found" });
     }
-    let itemIndex = cart.items.findIndex(
+    let existingItem = cart.items.find(
       (item) => item.productId === req.body.productId
     );
-    if (itemIndex !== -1) {
+    if (existingItem) {
       // Nếu sản phẩm đã tồn tại, cập nhật thông tin của nó
-      cart.items[itemIndex].quantity += req.body.quantity;
-      cart.items[itemIndex].totalPrice += req.body.totalPrice;
-      cart.totalQuantity += req.body.quantity;
-      cart.totalPrice += req.body.totalPrice;
+      existingItem.quantity += req.body.quantity;
+      existingItem.totalPrice += req.body.totalPrice;
     } else {
       // Nếu sản phẩm chưa tồn tại, thêm mới vào giỏ hàng
       cart.items.push(req.body);
-      cart.totalQuantity += req.body.quantity;
-      cart.totalPrice += req.body.totalPrice;
     }
+
+    // Cập nhật tổng số lượng và giá trị tổng cộng của giỏ hàng
+    cart.totalQuantity = cart.items.reduce(
+      (total, item) => total + item.quantity,
+      0
+    );
+    cart.totalPrice = cart.items.reduce(
+      (total, item) => total + item.totalPrice,
+      0
+    );
+
+    // Lưu thông tin giỏ hàng sau khi đã cập nhật hoặc thêm mới sản phẩm
     await cart.save();
     res.json(cart);
   } catch (error) {
