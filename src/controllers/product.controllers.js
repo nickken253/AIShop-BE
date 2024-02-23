@@ -133,3 +133,43 @@ export const getAllProduct = async (req, res) => {
         res.status(500).send("Error fetching product style");
     }
 }
+
+export const getListProductBaseColor = async (req, res) => {
+    const baseColour = req.params.baseColour;
+    try {
+        const products = await Product.find({ baseColour: baseColour }).exec();
+        res.json(products);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).send("Error fetching product style");
+    }
+};
+
+export const getListProductMasterCategory = async (req, res) => {
+    const masterCategory = req.params.masterCategory;
+    try {
+        const products = await Product.find({ masterCategory: masterCategory }).exec();
+        res.json(products);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).send("Error fetching product style");
+    }
+}
+
+export const getListProductMasterSubCategory = async (req, res) => {
+    const masterCategory = req.params.masterCategory;
+    const subCategory = req.params.subCategory;
+    try {
+        const products = await Product.find({ masterCategory: masterCategory, subCategory: subCategory }).exec();
+        res.json(products);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).send("Error fetching product style");
+    }
+}
+
+
+

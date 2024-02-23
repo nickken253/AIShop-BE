@@ -104,9 +104,8 @@ export const updateCartItem = async (req, res) => {
     }
     cart.totalQuantity = parseInt(cart.totalQuantity) - parseInt(item.quantity);
     cart.totalPrice = parseInt(cart.totalPrice) - parseInt(item.totalPrice);
-
     item.quantity = req.body.quantity;
-    item.totalPrice = req.body.totalPrice;
+    item.totalPrice = parseInt(item.price) * parseInt(item.quantity);
 
     cart.totalQuantity = parseInt(cart.totalQuantity) + parseInt(item.quantity);
     cart.totalPrice = parseInt(cart.totalPrice) + parseInt(item.totalPrice);
