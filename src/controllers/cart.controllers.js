@@ -68,8 +68,10 @@ export const addCartItem = async (req, res) => {
       (item) => item.productId == req.body.productId
     );
     if (existingItem) {
-      existingItem.quantity += req.body.quantity;
-      existingItem.totalPrice += req.body.totalPrice;
+      existingItem.quantity =
+        parseInt(existingItem.quantity) + parseInt(req.body.quantity);
+      existingItem.totalPrice =
+        parseInt(existingItem.totalPrice) + parseInt(req.body.totalPrice);
     } else {
       cart.items.push(req.body);
     }
