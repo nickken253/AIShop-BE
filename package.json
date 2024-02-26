@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/nickken253/AIShop-BE#readme",
   "dependencies": {
+    "@tensorflow/tfjs": "^4.17.0",
+    "@tensorflow/tfjs-converter": "^4.17.0",
     "bluebird": "^3.7.2",
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",

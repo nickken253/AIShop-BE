@@ -171,5 +171,27 @@ export const getListProductMasterSubCategory = async (req, res) => {
     }
 }
 
+export const getAllGender = async (req, res) => {
+    try {
+        const genderList = await Product.find().distinct("gender").exec();
+        res.json(genderList);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).send("Error fetching product style");
+    }
+}
+
+export const getListByGender = async (req, res) => {
+    const gender = req.params.gender;
+    try {
+        const products = await Product.find({gender: gender}).select("id link price productDisplayName baseColour").exec();
+        res.json(products);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).send("Error fetching product style");
+    }
+}
 
 
