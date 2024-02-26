@@ -15,6 +15,7 @@ import {
     getListProductMasterSubCategory,
     getAllGender,
     getListByGender,
+    getProductByPageGender,
 } from "../controllers/product.controllers.js";
 
 router.get("/productId/:id", getProductById);
@@ -24,6 +25,7 @@ router.get("/get-sub-category/:master", listSubCategoryByMaster);
 router.get("/get-all-product", getAllProduct);
 router.get("/get-all-product-shorted", getListProductImagePriceName);
 router.get("/get-product-by-page", getProductByPage);
+router.get("/get-product-by-page/:gender", getProductByPageGender);
 router.get("/get-product-by-page/:master", getProductByPagemasterCategory);
 router.get("/get-product-by-page/:master/:sub", getProductByPagemasterCategorysubCategory);
 router.get("/get-product-base-color/:baseColour", getListProductBaseColor);
