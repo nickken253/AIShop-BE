@@ -79,7 +79,7 @@ export const getProductByPage = async (req, res) => {
     try {
         const page = req.query.page || 1;
         const pageSize = req.query.pageSize || 30;
-        const products = await Product.find().skip((page - 1) * pageSize).limit(pageSize).select("id link price productDisplayName baseColour").exec();
+        const products = await Product.find().skip((page - 1) * pageSize).limit(pageSize).select("id link price productDisplayName gender baseColour").exec();
         res.json(products);
     } catch (error) {
         console.error(error);
@@ -92,7 +92,7 @@ export const getProductByPageGender = async (req, res) => {
         const page = req.query.page || 1;
         const pageSize = req.query.pageSize || 30;
         const gender = req.params.gender;
-        const products = await Product.find({gender: gender}).skip((page - 1) * pageSize).limit(pageSize).select("id link price productDisplayName baseColour").exec();
+        const products = await Product.find({gender: gender}).skip((page - 1) * pageSize).limit(pageSize).select("id link price productDisplayName gender baseColour").exec();
         res.json(products);
     } catch (error) {
         console.error(error);
@@ -102,7 +102,7 @@ export const getProductByPageGender = async (req, res) => {
 
 export const getListProductImagePriceName = async (req, res) => {
     try {
-        const products = await Product.find().select("id link price productDisplayName baseColour").exec();
+        const products = await Product.find().select("id link price productDisplayName gender baseColour").exec();
         res.json(products);
     } catch (error) {
         console.error(error);
@@ -115,7 +115,7 @@ export const getProductByPagemasterCategory = async (req, res) => {
         const page = req.query.page || 1;
         const pageSize = req.query.pageSize || 30;
         const masterCategory = req.params.master;
-        const products = await Product.find({ masterCategory: masterCategory }).skip((page - 1) * pageSize).limit(pageSize).select("id link price productDisplayName baseColour").exec();
+        const products = await Product.find({ masterCategory: masterCategory }).skip((page - 1) * pageSize).limit(pageSize).select("id link price productDisplayName gender baseColour").exec();
         res.json(products);
     } catch (error) {
         console.error(error);
@@ -129,7 +129,7 @@ export const getProductByPagemasterCategorysubCategory = async (req, res) => {
         const pageSize = req.query.pageSize || 30;
         const masterCategory = req.params.master;
         const subCategory = req.params.sub;
-        const products = await Product.find({ masterCategory: masterCategory, subCategory: subCategory }).skip((page - 1) * pageSize).limit(pageSize).select("id link price productDisplayName baseColour").exec();
+        const products = await Product.find({ masterCategory: masterCategory, subCategory: subCategory }).skip((page - 1) * pageSize).limit(pageSize).select("id link price productDisplayName gender baseColour").exec();
         res.json(products);
     } catch (error) {
         console.error(error);
@@ -150,7 +150,7 @@ export const getAllProduct = async (req, res) => {
 export const getListProductBaseColor = async (req, res) => {
     const baseColour = req.params.baseColour;
     try {
-        const products = await Product.find({ baseColour: baseColour }).select("id link price productDisplayName baseColour").exec();
+        const products = await Product.find({ baseColour: baseColour }).select("id link price productDisplayName gender baseColour").exec();
         res.json(products);
     }
     catch (error) {
@@ -162,7 +162,7 @@ export const getListProductBaseColor = async (req, res) => {
 export const getListProductMasterCategory = async (req, res) => {
     const masterCategory = req.params.masterCategory;
     try {
-        const products = await Product.find({ masterCategory: masterCategory }).select("id link price productDisplayName baseColour").exec();
+        const products = await Product.find({ masterCategory: masterCategory }).select("id link price productDisplayName gender baseColour").exec();
         res.json(products);
     }
     catch (error) {
@@ -175,7 +175,7 @@ export const getListProductMasterSubCategory = async (req, res) => {
     const masterCategory = req.params.masterCategory;
     const subCategory = req.params.subCategory;
     try {
-        const products = await Product.find({ masterCategory: masterCategory, subCategory: subCategory }).select("id link price productDisplayName baseColour").exec();
+        const products = await Product.find({ masterCategory: masterCategory, subCategory: subCategory }).select("id link price productDisplayName gender baseColour").exec();
         res.json(products);
     }
     catch (error) {
@@ -198,7 +198,7 @@ export const getAllGender = async (req, res) => {
 export const getListByGender = async (req, res) => {
     const gender = req.params.gender;
     try {
-        const products = await Product.find({gender: gender}).select("id link price productDisplayName baseColour").exec();
+        const products = await Product.find({gender: gender}).select("id link price productDisplayName gender baseColour").exec();
         res.json(products);
     }
     catch (error) {
