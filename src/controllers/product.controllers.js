@@ -92,7 +92,7 @@ export const getProductByPageGender = async (req, res) => {
         const page = req.query.page || 1;
         const pageSize = req.query.pageSize || 30;
         const gender = req.params.gender;
-        const products = await Product.find({gender: gender}).skip((page - 1) * pageSize).limit(pageSize).select("id link price productDisplayName gender baseColour").exec();
+        const products = await Product.find({gender: gender}).skip((page - 1) * pageSize).limit(pageSize).exec();
         res.json(products);
     } catch (error) {
         console.error(error);
