@@ -4,7 +4,7 @@ import User from "../models/user.model.js";
 
 dotenv.config();
 
-const generateToken = (user) => {
+export const generateToken = (user) => {
   let payload = {
     _id: user._id,
     email: user.profile.email,
@@ -41,5 +41,5 @@ export const authenticateToken = (req, res, next) => {
   }
 };
 
-export default generateToken;
+
 

@@ -1,5 +1,5 @@
 import User from "../models/user.model.js";
-import generateToken from "../middleware/JWTAction.js";
+import { generateToken } from "../middleware/JWTAction.js";
 
 export const login = async (req, res) => {
   const { email, password } = req.body;

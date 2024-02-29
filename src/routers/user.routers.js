@@ -1,4 +1,6 @@
 import express from "express";
+import { authenticateToken } from "../middleware/JWTAction.js";
+
 const router = express.Router();
 import {
   getAllUsers,
