@@ -31,6 +31,10 @@ export const authenticateToken = (req, res, next) => {
   if (!token) {
     return res.status(401).json({ message: 'Access denied. Token is required.' });
   }
+  const tokenParts = token.split(' ');
+  if (tokenParts.length !== 2 || tokenParts[0] !== 'Bearer') {
+    return res.status(401).json({ message: 'Invalid token format. Please provide a Bearer token.' });
+  }
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded;
