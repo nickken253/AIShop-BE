@@ -5,7 +5,13 @@ let userSchema = new Schema({
     firstname: { type: String, default: null },
     lastname: { type: String, default: null },
     gender: { type: String, default: "male" },
-    email: { type: String, default: null, unique: true, sparse: true, required: true},
+    email: {
+      type: String,
+      default: null,
+      unique: true,
+      sparse: true,
+      required: true,
+    },
     phone: { type: String, default: null },
     avatarLink: {
       type: String,
@@ -14,7 +20,7 @@ let userSchema = new Schema({
       unique: false,
     },
   },
-  password: { type: String, default: null, required: true},
+  password: { type: String, default: null, required: true },
   role: { type: String, default: "user" },
   isActive: { type: Boolean, default: false },
   token: { type: String, default: null },
