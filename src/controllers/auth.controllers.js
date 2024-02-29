@@ -4,9 +4,12 @@ import generateToken from "../middleware/JWTAction.js";
 export const login = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await User.findOne({ "profile.email": email, password: password });
+    const user = await User.findOne({ "profile.email": email});
     if (!user) {
       return res.status(404).json({ message: "User not found" });
+    }
+    if (user.password !== password) {
+      return res.status(401).json({ message: "Invalid password" });
     }
     const token = generateToken(user);
     res.json({ user, token }); 
