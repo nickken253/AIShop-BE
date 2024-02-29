@@ -11,13 +11,9 @@ export const generateToken = (user) => {
     name: user.profile.fistname + " " + user.profile.lastname,
     iat: Date.now(),
   };
-  let key = process.env.JWT_SECRET;
-  let expriesIn = process.env.JWT_EXPIRES_IN;
   let token = null;
   try {
-    token = jwt.sign(payload, key, {
-      expiresIn: expriesIn,
-    });
+    token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN });
     return token;
   } catch (error) {
     console.error(error);
@@ -26,7 +22,7 @@ export const generateToken = (user) => {
 
 
 export const authenticateToken = (req, res, next) => {
-  const token = req.headers.authorization;
+  let token = req.headers.authorization;
 
   if (!token) {
     return res.status(401).json({ message: 'Access denied. Token is required.' });
@@ -35,13 +31,14 @@ export const authenticateToken = (req, res, next) => {
   if (tokenParts.length !== 2 || tokenParts[0] !== 'Bearer') {
     return res.status(401).json({ message: 'Invalid token format. Please provide a Bearer token.' });
   }
+  token = req.headers.authorization.split(' ')[1];
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded;
     next();
   } catch (error) {
     console.error(error);
-    return res.status(401).json({ message: 'Invalid token ' + error.message });
+    return res.status(401).json({ message: 'Invalid token'});
   }
 };
 
