@@ -20,9 +20,9 @@ const host = process.env.SERVER_HOST;
 const port = process.env.SERVER_PORT;
 
 // CHÚ Ý CÁI NÀY KHI ĐẨY TỪ FE QUA BE
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 app.use(cors());
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 connectDB()
   .then(() => {
