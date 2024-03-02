@@ -87,6 +87,19 @@ export const getProductByPage = async (req, res) => {
     }
 };
 
+export const getSearchByPage = async (req, res) => {
+    try {
+        const page = req.query.page || 1;
+        const pageSize = req.query.pageSize || 30;
+        const search = req.query.search;
+        const products = await Product.find({ productDisplayName: { $regex: search, $options: "i" } }).skip((page - 1) * pageSize).limit(pageSize).select("id link price productDisplayName gender baseColour").exec(); 
+        res.json(products);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error fetching product style");
+    }
+};
+
 export const getProductByPageGender = async (req, res) => {
     try {
         const page = req.query.page || 1;

@@ -9,13 +9,14 @@ import {
   getListProductImagePriceName,
   getAllProduct,
   getProductByPagemasterCategory,
-    getProductByPagemasterCategorysubCategory,
-    getListProductBaseColor,
-    getListProductMasterCategory,
-    getListProductMasterSubCategory,
-    getAllGender,
-    getListByGender,
-    getProductByPageGender,
+  getProductByPagemasterCategorysubCategory,
+  getListProductBaseColor,
+  getListProductMasterCategory,
+  getListProductMasterSubCategory,
+  getAllGender,
+  getListByGender,
+  getProductByPageGender,
+  getSearchByPage,
 } from "../controllers/product.controllers.js";
 
 router.get("/productId/:id", getProductById);
@@ -33,5 +34,6 @@ router.get("/get-product-category/:masterCategory", getListProductMasterCategory
 router.get("/get-product-category/:masterCategory/:subCategory", getListProductMasterSubCategory);
 router.get("/get-all-gender", getAllGender);
 router.get("/get-products-by-gender/:gender", getListByGender);
+router.get("/get-search-by-page", getSearchByPage);
 
 export default router;
